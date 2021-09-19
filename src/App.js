@@ -20,7 +20,7 @@ const App = () => {
   const handleSearch = (text) => {
     console.log(text)
     const newList = list.filter((item) => {
-      return item.name.includes(text);
+      return item.name.toLowerCase().includes(text);
     });
     setList(newList);
     setSearch(text);
@@ -36,6 +36,7 @@ const App = () => {
         onChange={(event) => handleSearch(event.target.value)}
       />
       <div className="list-wrapper">
+        {list.length ===0 && <div className="no-results">No Results</div>}
         {list?.map((item, index) => {
           return (
             <div className="list-item" key={index}>
